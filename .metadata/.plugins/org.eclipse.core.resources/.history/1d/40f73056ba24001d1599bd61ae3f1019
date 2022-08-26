@@ -1,0 +1,64 @@
+/*
+ ============================================================================
+ Name        : intento.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(void)
+{
+	setbuf(stdout,NULL);
+	int numeroIngresado;
+	int contadorVueltas;
+	int acumuladorPositivo;
+	int acumMinimo;
+	int acumMaximo;
+	int acumuladorNegativo;
+	char respuesta;
+	contadorVueltas=0;
+	acumuladorPositivo=0;
+	acumuladorNegativo=0;
+	acumMaximo=0;
+	acumMinimo=0;
+	respuesta='s';
+
+	while(respuesta=='s')
+	{
+		printf("Ingrese numero : ");
+		scanf("%d",&numeroIngresado);
+		if(numeroIngresado>=0)
+		{
+			acumuladorPositivo+=numeroIngresado;
+			if(numeroIngresado<=acumMaximo)
+			{
+				acumMaximo=numeroIngresado;
+			}
+		}
+		if(numeroIngresado<=0)
+		{
+			acumuladorNegativo+=numeroIngresado;
+			if(numeroIngresado<acumMinimo)
+			{
+				acumMinimo=numeroIngresado;
+			}
+		}
+		contadorVueltas++;
+		printf("Presione la tecla S para continuar ingresando numeros...");
+		fflush(stdin);
+		scanf("%c",&respuesta);
+		respuesta=tolower(respuesta);
+	}
+	printf("Numeros positivos acumulados : %d",acumuladorPositivo);
+	printf("Numeros negativos acumulados : %d",acumuladorNegativo);
+	printf("Numero positivo mas grande ingresado : %d",acumMinimo);
+	printf("Numero negativo ");
+
+	return EXIT_SUCCESS;
+}

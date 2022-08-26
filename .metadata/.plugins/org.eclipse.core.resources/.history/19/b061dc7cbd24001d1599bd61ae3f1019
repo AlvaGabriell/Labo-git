@@ -1,0 +1,67 @@
+/*
+ ============================================================================
+ Name        : intento.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(void)
+{
+	setbuf(stdout,NULL);
+	int numeroIngresado;
+	int contadorVueltas;
+	int acumuladorPositivo;
+	int acumMinimo;
+	int acumMaximo;
+	int acumuladorNegativo;
+	int flag;
+	char respuesta;
+	flag=0;
+	contadorVueltas=0;
+	acumuladorPositivo=0;
+	acumuladorNegativo=0;
+	acumMaximo=0;
+	acumMinimo=0;
+	respuesta='s';
+
+	while(respuesta=='s')
+	{
+		printf("Ingrese numero : ");
+		scanf("%d",&numeroIngresado);
+		if(numeroIngresado>=0)
+		{
+			acumuladorPositivo+=numeroIngresado;
+			if(numeroIngresado<acumMaximo || flag==0)
+			{
+				acumMaximo=numeroIngresado;
+				flag=1;
+			}
+		}
+		if(numeroIngresado<=0)
+		{
+			acumuladorNegativo+=numeroIngresado;
+			if(numeroIngresado>acumMinimo)
+			{
+				acumMinimo=numeroIngresado;
+			}
+		}
+		contadorVueltas++;
+		printf("Presione la tecla S para continuar ingresando numeros...");
+		fflush(stdin);
+		scanf("%c",&respuesta);
+		respuesta=tolower(respuesta);
+	}
+	printf("Numeros positivos acumulados : %d\n",acumuladorPositivo);
+	printf("Numero positivo mas grande ingresado : %d\n",acumMaximo);
+	printf("Numeros negativos acumulados : %d\n",acumuladorNegativo);
+	printf("Numero negativo mas grande %d: ",acumMinimo);
+
+	return EXIT_SUCCESS;
+}
